@@ -19,6 +19,9 @@ class DecimalTree():
         self.root = DecimalTreeNode()
         self.populate_tree()
 
+        self.result = self.lookup_all_numbers()
+
+
     def _slice_prefix_and_cost(self, line):
         splitted_line = line.strip().split(',')
         prefix = splitted_line[0][1:]
@@ -69,5 +72,6 @@ class DecimalTree():
         return result
 
 if __name__ == '__main__':
-    test_dict = DecimalTree("route-costs-10.txt", "phone.txt")
-    cost = test_dict.find_cost_of_num("123")
+    test_dict = DecimalTree("route-costs-10000000.txt", "phone-numbers-1000.txt")
+    result = test_dict.result
+    print(result)
