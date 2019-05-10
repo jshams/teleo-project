@@ -55,6 +55,19 @@ class DecimalTree():
         # in the case that the number is the same size as its prefix
         return cost
 
+    def lookup_all_numbers(self):
+        '''Go through phone number path an find the cost of each phone number 
+        Use the lookup_number method to look through dictionary'''
+        result = {}
+        file = open(self.phone_number_path, 'r')
+        for line in file:
+            number = line.strip()[1:]
+            cost = self.find_cost_of_num(number)
+            result[number] = cost
+        file.close()
+
+        return result
+
 if __name__ == '__main__':
     test_dict = DecimalTree("route-costs-10.txt", "phone.txt")
     cost = test_dict.find_cost_of_num("123")
