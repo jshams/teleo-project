@@ -2,6 +2,9 @@ class DecimalTreeNode():
     def __init__(self):
         self.children = [None] * 10
         self.cost = None
+
+    def __repr__(self):
+        return "{}"
     
     def insert(self, num, cost = None):
         if self.children[num] is None:
@@ -14,7 +17,8 @@ class DecimalTree():
         self.route_cost_path = route_cost_path
         self.phone_number_path = phone_number_path
         self.root = DecimalTreeNode()
-    
+        self.populate_tree()
+
     def _slice_prefix_and_cost(self, line):
         splitted_line = line.strip().split(',')
         prefix = splitted_line[0][1:]
@@ -32,8 +36,12 @@ class DecimalTree():
         '''will add a whole prefix of integers to our tree'''
         node = self.root
         for i, num in enumerate(prefix):
+            num = int(num)
             if i <= len(prefix) - 1:
                 node.insert(num)
                 node = node.children[num]
             else:
                 self.insert(num, cost)
+
+if __name__ == '__main__':
+    test_dict = DecimalTree("route-costs-10.txt", "phone.txt")
