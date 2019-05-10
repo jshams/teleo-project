@@ -70,6 +70,6 @@ class LookUpDict():
         return result
 
 if __name__ == "__main__":
-    test_dict = LookUpDict("route-costs-1000000.txt", "phone.txt")
+    test_dict = LookUpDict("route-costs-10000000.txt", "phone-numbers-1000.txt")
     result = test_dict.result
     print(result)
