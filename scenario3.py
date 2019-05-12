@@ -66,7 +66,7 @@ class DecimalTree():
         for line in file:
             number = line.strip()[1:]
             cost = self.find_cost_of_num(number)
-            result[number] = cost
+            result["+{}".format(number)] = cost
         file.close()
 
         return result
