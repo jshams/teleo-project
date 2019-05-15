@@ -11,9 +11,9 @@ class LookUpDict():
 
     def route_cost_to_dict(self):
         '''
-        This method will convert our route cost text file into dictionary{prefix: cost}
+        This method will convert our route cost text file into dictionary {prefix: cost}
         Time complexity: O(n) worst and best case
-        Memroy complexity: O(n) worst and best
+        Memory complexity: O(n) worst and best
         '''
         route_dict = {}
 
@@ -65,6 +65,7 @@ class LookUpDict():
             number = line.strip()
             cost = self.lookup_number(number)
             result[number] = cost
+            print(f"{number} , {cost}")
         file.close()
 
         return result
@@ -72,4 +73,3 @@ class LookUpDict():
 if __name__ == "__main__":
     test_dict = LookUpDict("route-costs-10000000.txt", "phone-numbers-1000.txt")
     result = test_dict.result
-    print(result)

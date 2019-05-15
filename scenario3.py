@@ -29,11 +29,11 @@ class DecimalTree():
         return prefix, cost
 
     def populate_tree(self):
-        file = open(self.route_cost_path)
-        for line in file:
+        route_costs = open(self.route_cost_path)
+        for line in route_costs:
             item = self._slice_prefix_and_cost(line)
             self.insert(*item)
-        file.close()
+        route_costs.close()
 
     def insert(self, prefix, cost):
         '''will add a whole prefix of integers to our tree'''
@@ -49,7 +49,7 @@ class DecimalTree():
     def find_cost_of_num(self, number):
         node = self.root
         cost = None
-        for i, digit in enumerate(number):
+        for digit in number:
             if node.cost is not None:
                 cost = node.cost
             if node.children[int(digit)] is None: # in the case that the number is larger than its prefix
@@ -62,16 +62,21 @@ class DecimalTree():
         '''Go through phone number path an find the cost of each phone number 
         Use the lookup_number method to look through dictionary'''
         result = {}
-        file = open(self.phone_number_path, 'r')
-        for line in file:
+
+        phone_numbers = open(self.phone_number_path, 'r')
+        for line in phone_numbers:
             number = line.strip()[1:]
             cost = self.find_cost_of_num(number)
-            result["+{}".format(number)] = cost
-        file.close()
+            result[f"+{number}"] = cost
+            print(f"{number} , {cost}")
+
+
+        phone_numbers.close()
 
         return result
 
 if __name__ == '__main__':
-    test_dict = DecimalTree("route-costs-10000000.txt", "phone-numbers-1000.txt")
-    result = test_dict.result
-    print(result)
+    test_dict = DecimalTree("route-costs-10000000.txt", "phone-numbers-10000.txt")
+    # result = test_dict.result
+    # print(result)
+    import pickle
